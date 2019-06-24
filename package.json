@@ -1,0 +1,26 @@
+{
+  "name": "r2diesel-frontend-angularjs",
+  "version": "1.0.0",
+  "description": "Construccion de Web App para prueba tecnica en R2Diesel desarrollada usando como Frontend el Framework AngularJS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"Error: no build specified\" && exit 1",
+    "start": "echo \"Error: no start specified\" && exit 1"
+  },
+  "keywords": [
+    "R2Diesel",
+    "Web",
+    "App",
+    "AngularJS",
+    "Frontend",
+    "Framework"
+  ],
+  "author": "Sebastian Rios Sabogal",
+  "license": "MIT",
+  "dependencies": {
+    "admin-lte": "^2.4.12",
+    "angular": "^1.7.8"
+  },
+  "devDependencies": {}
+}
