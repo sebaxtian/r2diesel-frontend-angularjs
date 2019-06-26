@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="index" ng-controller="IndexController">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -55,9 +55,14 @@
       <div class="login-box-body">
         <p class="login-box-msg">Iniciar sesión</p>
 
-        <form action="../../index2.html" method="post">
+        <form>
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email" />
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              ng-model="email"
+            />
             <span
               class="glyphicon glyphicon-envelope form-control-feedback"
             ></span>
@@ -67,6 +72,7 @@
               type="password"
               class="form-control"
               placeholder="Password"
+              ng-model="password"
             />
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
@@ -78,9 +84,39 @@
             </div> -->
             <!-- /.col -->
             <div class="col-xs-12">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">
+              <button
+                type="submit"
+                class="btn btn-primary btn-block btn-flat {{ disabled }}"
+                ng-click="ingresar()"
+              >
                 Ingresar
               </button>
+              <div class="progress progress-sm active" ng-if="doLogin">
+                <div
+                  class="progress-bar progress-bar-success progress-bar-striped"
+                  role="progressbar"
+                  aria-valuenow="100"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 100%"
+                >
+                  <span class="sr-only">100% Complete</span>
+                </div>
+              </div>
+              <div
+                class="alert alert-warning alert-dismissible"
+                role="alert"
+                ng-if="errorLogin"
+              >
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span></button
+                >El email o password son inválidos.
+              </div>
             </div>
             <!-- /.col -->
           </div>
@@ -111,6 +147,8 @@
     <script src="../node_modules/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <script src="../node_modules/admin-lte/plugins/iCheck/icheck.min.js"></script>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="index.js"></script>
     <script>
       $(function() {
         $("input").iCheck({
