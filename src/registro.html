@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="registro" ng-controller="RegistroController">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -51,19 +51,31 @@
   <body class="hold-transition register-page">
     <div class="register-box">
       <div class="register-logo">
-        <div class="login-logo"><a href="index.html"><b>R2Diesel</b>Noticias</a></div>
+        <div class="login-logo">
+          <a href="index.html"><b>R2Diesel</b>Noticias</a>
+        </div>
       </div>
 
       <div class="register-box-body">
         <p class="login-box-msg">Registrar nuevo usuario</p>
 
-        <form action="../../index.html" method="post">
+        <form>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Nombre" />
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Nombre"
+              ng-model="nombre"
+            />
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="email" class="form-control" placeholder="Email" />
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              ng-model="email"
+            />
             <span
               class="glyphicon glyphicon-envelope form-control-feedback"
             ></span>
@@ -73,10 +85,11 @@
               type="password"
               class="form-control"
               placeholder="Password"
+              ng-model="password"
             />
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
-          <div class="form-group has-feedback">
+          <!-- <div class="form-group has-feedback">
             <input
               type="password"
               class="form-control"
@@ -85,7 +98,7 @@
             <span
               class="glyphicon glyphicon-log-in form-control-feedback"
             ></span>
-          </div>
+          </div> -->
           <div class="row">
             <!-- <div class="col-xs-8">
               <div class="checkbox icheck">
@@ -96,9 +109,53 @@
             </div> -->
             <!-- /.col -->
             <div class="col-xs-12">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">
+              <button
+                type="submit"
+                class="btn btn-primary btn-block btn-flat {{ disabled }}"
+                ng-click="registrar()"
+              >
                 Registro
               </button>
+              <div class="progress progress-sm active" ng-if="doRegistro">
+                <div
+                  class="progress-bar progress-bar-success progress-bar-striped"
+                  role="progressbar"
+                  aria-valuenow="100"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style="width: 100%"
+                >
+                  <span class="sr-only">100% Complete</span>
+                </div>
+              </div>
+              <div
+                class="alert alert-warning alert-dismissible"
+                role="alert"
+                ng-if="errorRegistro"
+              >
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span></button
+                >El nombre, email o password son inválidos.
+              </div>
+              <div
+                class="alert alert-success alert-dismissible"
+                role="alert"
+                ng-if="exitoRegistro"
+              >
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span></button
+                >Registro de usuario exitoso.
+              </div>
             </div>
             <!-- /.col -->
           </div>
@@ -126,6 +183,8 @@
     <script src="../node_modules/admin-lte/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <script src="../node_modules/admin-lte/plugins/iCheck/icheck.min.js"></script>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="registro.js"></script>
     <script>
       $(function() {
         $("input").iCheck({
